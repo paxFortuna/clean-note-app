@@ -8,7 +8,7 @@ class NoteDbHelper {
   NoteDbHelper(this.db);
 
   Future<Note?> getNoteById(int id) async {
-    // SELECT * FROM note WHERE id = 2;
+    // SELECT * FROM note WHERE id = 1
     final List<Map<String, dynamic>> maps = await db.query(
       'note',
       where: 'id = ?',
@@ -41,8 +41,7 @@ class NoteDbHelper {
   }
 
   Future<void> deleteNote(Note note) async {
-    await db.delete(
-      'note',
+    await db.delete('note',
       where: 'id = ?',
       whereArgs: [note.id],
     );

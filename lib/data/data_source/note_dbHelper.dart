@@ -8,7 +8,7 @@ class NoteDbHelper {
   NoteDbHelper(this.db);
 
   Future<Note?> getNoteById(int id) async {
-    // SELECT * FROM note WHERE id = 1;
+    // SELECT * FROM note WHERE id = 2;
     final List<Map<String, dynamic>> maps = await db.query(
       'note',
       where: 'id = ?',

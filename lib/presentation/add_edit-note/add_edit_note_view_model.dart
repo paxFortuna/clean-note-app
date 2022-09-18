@@ -1,6 +1,6 @@
 import 'package:clean_note_app/domain/repository/note_repository.dart';
 import 'package:clean_note_app/presentation/add_edit-note/add_edit_note_event.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../domain/model/note.dart';

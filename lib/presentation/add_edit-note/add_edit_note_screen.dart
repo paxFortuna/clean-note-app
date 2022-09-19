@@ -115,6 +115,7 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
               _contentController.text.isEmpty) {
             const snackBar = SnackBar(content: Text('제목이나 내용이 비어 있습니다'));
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            return;
           }
 
           viewModel.onEvent(AddEditNoteEvent.saveNote(

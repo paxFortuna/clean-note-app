@@ -41,6 +41,13 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
     }
     Future.microtask(() {
       final viewModel = context.read<AddEditNoteViewModel>();
+
+      if (widget.note != null) {
+        viewModel.onEvent(AddEditNoteEvent.changeColor(widget.note!.color));
+      } else {
+        viewModel.onEvent(AddEditNoteEvent.changeColor(roseBud.value));
+      }
+
       _streamSubscription = viewModel.eventStream.listen((event) {
         event.when(saveNote: () {
           Navigator.pop(context, true);
@@ -68,7 +75,9 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
       body: AnimatedContainer(
         duration: const Duration(milliseconds: 500),
         padding: const EdgeInsets.fromLTRB(16, 60, 16, 16),
-        color: Color(viewModel.color),
+        // color: Color(viewModel.color),
+        curve: Curves.bounceIn,
+        color: Color(viewModel.state.color),
         child: ListView(
           children: [
             Row(
@@ -82,7 +91,8 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
                       },
                       child: _buildBackgroundColor(
                         color: color,
-                        selected: viewModel.color == color.value,
+                        // selected: viewModel.color == color.value,
+                        selected: viewModel.state.color == color.value,
                       ),
                     ),
                   )

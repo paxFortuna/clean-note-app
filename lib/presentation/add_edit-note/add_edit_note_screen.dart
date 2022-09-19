@@ -19,7 +19,7 @@ class AddEditNoteScreen extends StatefulWidget {
 class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
   final _titleController = TextEditingController();
   final _contentController = TextEditingController();
-  // StreamSubscription? _streamSubscription;
+  StreamSubscription? _streamSubscription;
 
   final List<Color> noteColors = [
     roseBud,
@@ -37,7 +37,7 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
     Future.microtask(() {
       final viewModel = context.read<AddEditNoteViewModel>();
 
-      viewModel.eventStream.listen((event) {
+      _streamSubscription = viewModel.eventStream.listen((event) {
         event.when(saveNote: () {
           Navigator.pop(context, true);
         });
@@ -47,6 +47,7 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
 
   @override
   void dispose() {
+    _streamSubscription?.cancel();
     _titleController.dispose();
     _contentController.dispose();
     super.dispose();

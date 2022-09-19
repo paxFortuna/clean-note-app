@@ -48,14 +48,20 @@ class NotesScreen extends StatelessWidget {
         child: ListView(
           children: state.notes
               .map(
-                (note) =>
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
+                (note) => GestureDetector(
+                  onTap: () async {
+                    bool? isSaved = await Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => AddEditNoteScreen(note: note,)),
+                        builder: (context) => AddEditNoteScreen(
+                          note: note,
+                        ),
+                      ),
                     );
+
+                    if (isSaved != null && isSaved) {
+                      viewModel.onEvent(const NotesEvent.loadNotes());
+                    }
                   },
                   child: NoteItem(
                     note: note,
@@ -75,7 +81,7 @@ class NotesScreen extends StatelessWidget {
                     },
                   ),
                 ),
-          )
+              )
               .toList(),
         ),
       ),

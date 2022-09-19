@@ -71,68 +71,70 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<AddEditNoteViewModel>();
-    return Scaffold(
-      body: AnimatedContainer(
-        duration: const Duration(milliseconds: 500),
-        padding: const EdgeInsets.fromLTRB(16, 60, 16, 16),
-        // color: Color(viewModel.color),
-        curve: Curves.bounceIn,
-        color: Color(viewModel.state.color),
-        child: ListView(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: noteColors
-                  .map(
-                    (color) => InkWell(
-                      onTap: () {
-                        viewModel
-                            .onEvent(AddEditNoteEvent.changeColor(color.value));
-                      },
-                      child: _buildBackgroundColor(
-                        color: color,
-                        // selected: viewModel.color == color.value,
-                        selected: viewModel.state.color == color.value,
+    return SafeArea(
+      child: Scaffold(
+        body: AnimatedContainer(
+          duration: const Duration(milliseconds: 500),
+          padding: const EdgeInsets.all(16),
+          curve: Curves.bounceIn,
+          // color: Color(viewModel.color),
+          color: Color(viewModel.state.color),
+          child: ListView(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: noteColors
+                    .map(
+                      (color) => InkWell(
+                        onTap: () {
+                          viewModel
+                              .onEvent(AddEditNoteEvent.changeColor(color.value));
+                        },
+                        child: _buildBackgroundColor(
+                          color: color,
+                          // selected: viewModel.color == color.value,
+                          selected: viewModel.state.color == color.value,
+                        ),
                       ),
+                    )
+                    .toList(),
+              ),
+              TextField(
+                controller: _titleController,
+                maxLines: 1,
+                style: Theme.of(context).textTheme.headline5!.copyWith(
+                      color: darkGray,
                     ),
-                  )
-                  .toList(),
-            ),
-            TextField(
-              controller: _titleController,
-              maxLines: 1,
-              style: Theme.of(context).textTheme.headline5!.copyWith(
-                    color: darkGray,
-                  ),
-              decoration: const InputDecoration(
-                hintText: '제목을 입력하세요',
-                border: InputBorder.none,
+                decoration: const InputDecoration(
+                  hintText: '제목을 입력하세요',
+                  border: InputBorder.none,
+                ),
               ),
-            ),
-            TextField(
-              controller: _contentController,
-              maxLines: null,
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                    color: darkGray,
-                  ),
-              decoration: const InputDecoration(
-                hintText: '내용을 입력하세요',
-                border: InputBorder.none,
+              TextField(
+                controller: _contentController,
+                maxLines: null,
+                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      color: darkGray,
+                    ),
+                decoration: const InputDecoration(
+                  hintText: '내용을 입력하세요',
+                  border: InputBorder.none,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
 
-          viewModel.onEvent(AddEditNoteEvent.saveNote(
-            widget.note == null ? null : widget.note!.id,
-            _titleController.text,
-            _contentController.text,
-          ));
-        },
-        child: const Icon(Icons.save),
+            viewModel.onEvent(AddEditNoteEvent.saveNote(
+              widget.note == null ? null : widget.note!.id,
+              _titleController.text,
+              _contentController.text,
+            ));
+          },
+          child: const Icon(Icons.save),
+        ),
       ),
     );
   }

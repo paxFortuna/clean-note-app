@@ -12,15 +12,7 @@ import '../../domain/util/note_order.dart';
 import '../../domain/util/order_type.dart';
 
 class NotesViewModel with ChangeNotifier {
-  // final GetNotesUseCase getNotes;
-  // final DeleteNoteUseCase deleteNote;
-  // final AddNoteUseCase addNote;
-
   final UseCases useCases;
-
-  NotesViewModel(this.useCases) {
-    _loadNotes();
-  }
 
   NotesState _state = NotesState(
     notes: [],
@@ -29,10 +21,11 @@ class NotesViewModel with ChangeNotifier {
 
   NotesState get state => _state;
 
-  // List<Note> _notes = [];
-  // UnmodifiableListView<Note> get note => UnmodifiableListView(_notes);
-
   Note? _recentlyDeletedNote;
+
+  NotesViewModel(this.useCases) {
+    _loadNotes();
+  }
 
   void onEvent(NotesEvent event) {
     event.when(

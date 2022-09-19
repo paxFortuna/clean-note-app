@@ -5,10 +5,12 @@ import 'package:flutter/foundation.dart';
 
 import '../../domain/model/note.dart';
 
-class NoteViewModel with ChangeNotifier {
+class NotesViewModel with ChangeNotifier {
   final NoteRepository repository;
 
-  NoteViewModel(this.repository);
+  NotesViewModel(this.repository) {
+    _loadNotes();
+  }
 
   NotesState _state = NotesState(notes: []);
   NotesState get state => _state;

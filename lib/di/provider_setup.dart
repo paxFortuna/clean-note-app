@@ -24,7 +24,7 @@ Future<List<SingleChildWidget>> getProviders() async {
 
   NoteDbHelper noteDbHelper = NoteDbHelper(database);
   NoteRepository repository = NoteRepositoryImpl(noteDbHelper);
-  NoteViewModel noteViewModel = NoteViewModel(repository);
+  NotesViewModel noteViewModel = NotesViewModel(repository);
   AddEditNoteViewModel addEditNoteViewModel = AddEditNoteViewModel(repository);
 
   // List<SingleChildWidget> independentModels = [];

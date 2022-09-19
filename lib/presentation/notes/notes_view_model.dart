@@ -8,6 +8,8 @@ import '../../domain/model/note.dart';
 import '../../domain/use_case/add_note_use_case.dart';
 import '../../domain/use_case/delete_note_use_case.dart';
 import '../../domain/use_case/use_cases.dart';
+import '../../domain/util/note_order.dart';
+import '../../domain/util/order_type.dart';
 
 class NotesViewModel with ChangeNotifier {
   // final GetNotesUseCase getNotes;
@@ -20,7 +22,10 @@ class NotesViewModel with ChangeNotifier {
     _loadNotes();
   }
 
-  NotesState _state = NotesState(notes: []);
+  NotesState _state = NotesState(
+    notes: [],
+    noteOrder: const NoteOrder.date(OrderType.descending()),
+  );
 
   NotesState get state => _state;
 
@@ -39,7 +44,7 @@ class NotesViewModel with ChangeNotifier {
 
   Future<void> _loadNotes() async {
     // await getNotes.call(); call()생략 가능
-    List<Note> notes = await useCases.getNotes();
+    List<Note> notes = await useCases.getNotes(state.noteOrder);
     notes.sort((a, b) => -a.timestamp.compareTo(b.timestamp));
     _state = state.copyWith(
       notes: notes,

@@ -42,17 +42,9 @@ Future<List<SingleChildWidget>> getProviders() async {
   NotesViewModel noteViewModel = NotesViewModel(useCases);
   AddEditNoteViewModel addEditNoteViewModel = AddEditNoteViewModel(repository);
 
-  // List<SingleChildWidget> independentModels = [];
-  // List<SingleChildWidget> dependentModels = [];
-  // List<SingleChildWidget> viewModels = [];
-  // List<SingleChildWidget> globalProviders = [
-  //   ...independentModels,
-  //   ...dependentModels,
-  //   ...viewModels,
-  // ];
-
   return [
     ChangeNotifierProvider(create: (_) => noteViewModel),
-    ChangeNotifierProvider(create: (_) => addEditNoteViewModel),
+    // ChangeNotifierProvider(create: (_) => addEditNoteViewModel),
+    Provider(create: (_) => repository),
   ];
 }

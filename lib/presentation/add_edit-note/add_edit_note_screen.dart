@@ -42,11 +42,11 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
     Future.microtask(() {
       final viewModel = context.read<AddEditNoteViewModel>();
 
-      if (widget.note != null) {
-        viewModel.onEvent(AddEditNoteEvent.changeColor(widget.note!.color));
-      } else {
-        viewModel.onEvent(AddEditNoteEvent.changeColor(roseBud.value));
-      }
+      // if (widget.note != null) {
+      //   viewModel.onEvent(AddEditNoteEvent.changeColor(widget.note!.color));
+      // } else {
+      //   viewModel.onEvent(AddEditNoteEvent.changeColor(roseBud.value));
+      // }
 
       _streamSubscription = viewModel.eventStream.listen((event) {
         event.when(saveNote: () {

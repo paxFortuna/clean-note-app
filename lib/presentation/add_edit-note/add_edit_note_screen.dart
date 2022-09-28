@@ -52,9 +52,9 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
         event.when(saveNote: () {
           Navigator.pop(context, true);
         }, showSnackBar: (String message) {
-            final snackBar = SnackBar(content: Text(message));
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            return;
+          final snackBar = SnackBar(content: Text(message));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          return;
         });
       });
     });
@@ -86,25 +86,25 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
                 children: noteColors
                     .map(
                       (color) => InkWell(
-                        onTap: () {
-                          viewModel
-                              .onEvent(AddEditNoteEvent.changeColor(color.value));
-                        },
-                        child: _buildBackgroundColor(
-                          color: color,
-                          // selected: viewModel.color == color.value,
-                          selected: viewModel.state.color == color.value,
-                        ),
-                      ),
-                    )
+                    onTap: () {
+                      viewModel
+                          .onEvent(AddEditNoteEvent.changeColor(color.value));
+                    },
+                    child: _buildBackgroundColor(
+                      color: color,
+                      // selected: viewModel.color == color.value,
+                      selected: viewModel.state.color == color.value,
+                    ),
+                  ),
+                )
                     .toList(),
               ),
               TextField(
                 controller: _titleController,
                 maxLines: 1,
                 style: Theme.of(context).textTheme.headline5!.copyWith(
-                      color: darkGray,
-                    ),
+                  color: darkGray,
+                ),
                 decoration: const InputDecoration(
                   hintText: '제목을 입력하세요',
                   border: InputBorder.none,
@@ -114,8 +114,8 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
                 controller: _contentController,
                 maxLines: null,
                 style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                      color: darkGray,
-                    ),
+                  color: darkGray,
+                ),
                 decoration: const InputDecoration(
                   hintText: '내용을 입력하세요',
                   border: InputBorder.none,
@@ -158,9 +158,9 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
         ],
         border: selected
             ? Border.all(
-                color: Colors.black,
-                width: 2.0,
-              )
+          color: Colors.black,
+          width: 2.0,
+        )
             : null,
       ),
     );

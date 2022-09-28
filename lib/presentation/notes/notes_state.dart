@@ -13,5 +13,5 @@ class NotesState with _$NotesState {
     required NoteOrder noteOrder,
     required bool isOrderSectionVisible,
   }) = _NotesState;
-  
+
 }

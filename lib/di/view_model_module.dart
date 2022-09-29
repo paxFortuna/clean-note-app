@@ -1,6 +1,5 @@
 import 'package:clean_note_app/domain/repository/note_repository.dart';
 import 'package:clean_note_app/presentation/add_edit-note/add_edit_note_view_model.dart';
-import 'package:clean_note_app/presentation/notes/notes_view_model.dart';
 import 'package:injectable/injectable.dart';
 
 import '../domain/use_case/add_note_use_case.dart';

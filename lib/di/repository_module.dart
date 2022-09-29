@@ -8,6 +8,7 @@ import 'di_setup.dart';
 @module
 abstract class RepositoryModule {
   @singleton
+  // NoteRepository get noteRepository => NoteRepositoryImpl(getIt.get<NoteDbHelper>());
   NoteRepository get noteRepository => NoteRepositoryImpl(getIt.get<NoteDbHelper>());
 
 }

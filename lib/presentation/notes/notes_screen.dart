@@ -1,4 +1,3 @@
-import 'package:clean_note_app/domain/repository/note_repository.dart';
 import 'package:clean_note_app/presentation/add_edit-note/add_edit_note_screen.dart';
 import 'package:clean_note_app/presentation/add_edit-note/add_edit_note_view_model.dart';
 import 'package:clean_note_app/presentation/notes/notes_event.dart';

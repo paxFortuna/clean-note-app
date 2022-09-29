@@ -21,8 +21,7 @@ class AddEditNoteViewModel with ChangeNotifier {
 
   Stream<AddEditNoteUiEvent> get eventStream => _eventController.stream;
 
-  // viewModel에 생성자가 있으면, 의존성 주입하기 어려우니, note를 setter로 전달.
-  // AddEditNoteViewModel(this.repository, {Note? note}) {
+    // AddEditNoteViewModel(this.repository, {Note? note}) {
   //   _state =state.copyWith(
   //     note: note,
   //     color: note?.color ?? roseBud.value,
@@ -31,9 +30,11 @@ class AddEditNoteViewModel with ChangeNotifier {
 
   AddEditNoteState get state => _state;
 
+  // viewModel에 생성자가 있으면, 의존성 주입하기 어려우니, note를 setter로 전달.
   void setNote(Note note) {
     _state = state.copyWith(
       note: note,
+      //color: note?.color ?? roseBud.value,
       color: note.color,
     );
     notifyListeners();

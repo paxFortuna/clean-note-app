@@ -15,7 +15,6 @@ class NotesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return ChangeNotifierProvider(
         create: (_) => getIt.get<NotesViewModel>(),
         builder: (context, widget) {
@@ -43,7 +42,13 @@ class NotesScreen extends StatelessWidget {
                 bool? isSaved = await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context)  => AddEditNoteScreen(),
+                    builder: (context) {
+                      return ChangeNotifierProvider(
+                        // factory로 새로 생성해서 전달됨
+                        create: (_) => getIt.get<AddEditNoteViewModel>(),
+                        child: const AddEditNoteScreen(),
+                      );
+                    },
                   ),
                 );
                 if (isSaved != null && isSaved) {
@@ -77,22 +82,9 @@ class NotesScreen extends StatelessWidget {
                               MaterialPageRoute(
                                 // note: note,
                                 builder: (context) {
-                                  final repository =
-                                      context.read<NoteRepository>();
-
-                                  final nextScreen = AddEditNoteScreen(
-                                    note: note,
-                                  );
-
-                                  final viewModel = AddEditNoteViewModel(
-                                      repository,
-                                      note: note);
-
-                                  print('해시코드!!!!!! : ${viewModel.hashCode}');
-
                                   return ChangeNotifierProvider(
-                                    create: (_) => viewModel,
-                                    child: nextScreen,
+                                    create: (_) => getIt.get<AddEditNoteViewModel>(),
+                                    child: AddEditNoteScreen(note: note),
                                   );
                                 },
                               ),

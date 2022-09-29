@@ -5,7 +5,6 @@ import '../../domain/model/note.dart';
 
 part 'notes_state.freezed.dart';
 
-
 @freezed
 class NotesState with _$NotesState {
   factory NotesState({

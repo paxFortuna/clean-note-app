@@ -7,7 +7,7 @@ part 'add_edit_note_state.freezed.dart';
 part 'add_edit_note_state.g.dart';
 
 @freezed
-abstract class AddEditNoteState with _$AddEditNoteState {
+class AddEditNoteState with _$AddEditNoteState {
   const factory AddEditNoteState({
     Note? note,
     required int color,

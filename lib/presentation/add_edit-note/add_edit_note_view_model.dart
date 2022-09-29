@@ -17,20 +17,27 @@ class AddEditNoteViewModel with ChangeNotifier {
   // int get color => _color;
   AddEditNoteState _state = AddEditNoteState(color: roseBud.value);
 
-
   final _eventController = StreamController<AddEditNoteUiEvent>.broadcast();
+
   Stream<AddEditNoteUiEvent> get eventStream => _eventController.stream;
 
-  // AddEditNoteViewModel(this.repository);
-  AddEditNoteViewModel(this.repository, {Note? note}) {
-    _state =state.copyWith(
+  // viewModel에 생성자가 있으면, 의존성 주입하기 어려우니, note를 setter로 전달.
+  // AddEditNoteViewModel(this.repository, {Note? note}) {
+  //   _state =state.copyWith(
+  //     note: note,
+  //     color: note?.color ?? roseBud.value,
+  //   );
+  AddEditNoteViewModel(this.repository);
+
+  AddEditNoteState get state => _state;
+
+  void setNote(Note note) {
+    _state = state.copyWith(
       note: note,
-      color: note?.color ?? roseBud.value,
+      color: note.color,
     );
     notifyListeners();
   }
-
-  AddEditNoteState get state => _state;
 
   void onEvent(AddEditNoteEvent event) {
     event.when(
@@ -48,8 +55,7 @@ class AddEditNoteViewModel with ChangeNotifier {
   Future<void> _saveNote(int? id, String title, String content) async {
     if (title.isEmpty || content.isEmpty) {
       _eventController
-          .add(const AddEditNoteUiEvent
-          .showSnackBar('제목이나 내용이 비어 있습니다'));
+          .add(const AddEditNoteUiEvent.showSnackBar('제목이나 내용이 비어 있습니다'));
       return;
     }
     if (id == null) {

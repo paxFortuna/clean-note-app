@@ -83,7 +83,8 @@ class NotesScreen extends StatelessWidget {
                                 // note: note,
                                 builder: (context) {
                                   return ChangeNotifierProvider(
-                                    create: (_) => getIt.get<AddEditNoteViewModel>(),
+                                    // ..setNote()하면 getIt.get<>의 값이 setNote에 리턴 된다
+                                    create: (_) => getIt.get<AddEditNoteViewModel>()..setNote(note),
                                     child: AddEditNoteScreen(note: note),
                                   );
                                 },

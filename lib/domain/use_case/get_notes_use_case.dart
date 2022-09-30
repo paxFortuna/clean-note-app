@@ -1,8 +1,10 @@
 import 'package:clean_note_app/domain/repository/note_repository.dart';
 import 'package:clean_note_app/domain/util/note_order.dart';
+import 'package:injectable/injectable.dart';
 
 import '../model/note.dart';
 
+@singleton
 class GetNotesUseCase {
   final NoteRepository repository;
 

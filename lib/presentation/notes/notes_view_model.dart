@@ -1,12 +1,14 @@
 import 'package:clean_note_app/presentation/notes/notes_event.dart';
 import 'package:clean_note_app/presentation/notes/notes_state.dart';
 import 'package:flutter/foundation.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../domain/model/note.dart';
 import '../../domain/use_case/use_cases.dart';
 import '../../domain/util/note_order.dart';
 import '../../domain/util/order_type.dart';
 
+@injectable
 class NotesViewModel with ChangeNotifier {
   final UseCases useCases;
 

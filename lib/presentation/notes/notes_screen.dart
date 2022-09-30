@@ -5,7 +5,7 @@ import 'package:clean_note_app/presentation/notes/notes_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../di/provider_setup.dart';
+import '../../di/di_setup.dart';
 import 'components/note_item.dart';
 import 'components/order_section.dart';
 
